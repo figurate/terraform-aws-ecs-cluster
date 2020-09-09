@@ -26,11 +26,13 @@ resource "aws_ecs_cluster" "cluster" {
 }
 
 resource "aws_service_discovery_private_dns_namespace" "cluster" {
-  name = var.name
-  vpc  = data.aws_vpc.tenant.id
+  count = var.servicediscovery_enabled ? 1 : 0
+  name  = var.name
+  vpc   = data.aws_vpc.tenant.id
 }
 
 resource "aws_apigatewayv2_api" "cluster" {
+  count         = var.apigateway_enabled ? 1 : 0
   name          = var.name
   protocol_type = "HTTP"
 }

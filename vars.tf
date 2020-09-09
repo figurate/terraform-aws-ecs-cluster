@@ -16,3 +16,13 @@ variable "vpc_tags" {
   description = "Lookup tags to identify VPC for optional features (e.g. service discovery)"
   default     = {}
 }
+
+variable "servicediscovery_enabled" {
+  description = "Create service discovery private zone for the cluster"
+  default     = false
+}
+
+variable "apigateway_enabled" {
+  description = "Create an API Gateway endpoint for the cluster"
+  default     = false
+}

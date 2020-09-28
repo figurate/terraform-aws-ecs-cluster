@@ -4,7 +4,9 @@ TERRAFORM=docker run --rm -v "${PWD}:/work" -e AWS_DEFAULT_REGION=$(AWS_DEFAULT_
 
 TERRAFORM_DOCS=docker run --rm -v "${PWD}:/work" tmknom/terraform-docs
 
-CHECKOV=docker run -t -v "${PWD}:/work" bridgecrew/checkov
+CHECKOV=docker run --rm -t -v "${PWD}:/work" bridgecrew/checkov
+
+TFSEC=docker run --rm -it -v "${PWD}:/work" liamg/tfsec
 
 DIAGRAMS=docker run -t -v "${PWD}:/work" figurate/diagrams python
 
@@ -20,6 +22,8 @@ validate:
 
 test: validate
 	$(CHECKOV) -d /work
+
+	$(TFSEC) /work
 
 diagram:
 	$(DIAGRAMS) diagram.py

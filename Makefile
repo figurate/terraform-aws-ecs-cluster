@@ -10,6 +10,8 @@ TFSEC=docker run --rm -it -v "${PWD}:/work" liamg/tfsec
 
 DIAGRAMS=docker run -t -v "${PWD}:/work" figurate/diagrams python
 
+EXAMPLE=$(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
+
 .PHONY: all clean validate test docs format
 
 all: validate test docs format
@@ -32,4 +34,8 @@ docs: diagram
 	$(TERRAFORM_DOCS) markdown ./ >./README.md
 
 format:
-	$(TERRAFORM) fmt -list=true ./
+	$(TERRAFORM) fmt -list=true ./ && \
+		$(TERRAFORM) fmt -list=true ./examples/spotfleet
+
+example:
+	$(TERRAFORM) init examples/$(EXAMPLE) && $(TERRAFORM) plan -input=false examples/$(EXAMPLE)

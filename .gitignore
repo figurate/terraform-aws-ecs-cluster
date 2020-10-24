@@ -2,3 +2,5 @@
 .idea
 .terraform
 terraform-aws-ecs-cluster.iml
+*.tfvars
+*tfstate*

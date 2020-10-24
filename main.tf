@@ -12,11 +12,14 @@ data "aws_vpc" "tenant" {
 
 resource "aws_ecs_cluster" "cluster" {
   name               = var.name
-  capacity_providers = [var.default_capacity_provider]
+  capacity_providers = var.capacity_providers
 
-  default_capacity_provider_strategy {
-    capacity_provider = var.default_capacity_provider
-    weight            = 100
+  dynamic "default_capacity_provider_strategy" {
+    for_each = var.default_capacity_provider != null ? [1] : []
+    content {
+      capacity_provider = var.default_capacity_provider
+      weight            = 100
+    }
   }
 
   setting {

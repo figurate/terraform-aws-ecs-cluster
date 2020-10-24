@@ -4,12 +4,12 @@ variable "name" {
 
 variable "capacity_providers" {
   description = "A list of capacity providers for the cluster"
-  default = []
+  default     = []
 }
 
 variable "default_capacity_provider" {
   description = "Default capacity provider for the cluster"
-  default = null
+  default     = null
 }
 
 variable "vpc_default" {

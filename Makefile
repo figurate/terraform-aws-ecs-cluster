@@ -1,5 +1,7 @@
 SHELL:=/bin/bash
-TERRAFORM_VERSION=0.12.24
+AWS_DEFAULT_REGION?=ap-southeast-2
+
+TERRAFORM_VERSION=0.13.4
 TERRAFORM=docker run --rm -v "${PWD}:/work" -e AWS_DEFAULT_REGION=$(AWS_DEFAULT_REGION) -e http_proxy=$(http_proxy) --net=host -w /work hashicorp/terraform:$(TERRAFORM_VERSION)
 
 TERRAFORM_DOCS=docker run --rm -v "${PWD}:/work" tmknom/terraform-docs

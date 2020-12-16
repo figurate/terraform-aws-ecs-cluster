@@ -17,8 +17,18 @@ resource "aws_ecs_cluster" "cluster" {
     }
   }
 
+  #checkov:skip=CKV_AWS_65:Dynamic container insights
   setting {
     name  = "containerInsights"
-    value = "enabled"
+    value = var.enable_container_insights ? "enabled" : "disabled"
   }
+
+  tags = merge(
+    var.custom_tags,
+    {
+      Name            = var.name
+      EnvironmentType = var.environment_type
+      "figurate:s"    = "figurate/ecs-cluster/aws"
+    },
+  )
 }

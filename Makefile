@@ -15,7 +15,7 @@ DIAGRAMS=docker run -v "${PWD}:/work" figurate/diagrams python
 
 EXAMPLE=$(wordlist 2, $(words $(MAKECMDGOALS)), $(MAKECMDGOALS))
 
-.PHONY: all clean validate test docs format
+.PHONY: all clean validate test docs format example archive
 
 all: validate test docs format
 
@@ -42,3 +42,6 @@ format:
 
 example:
 	$(TERRAFORM) init examples/$(EXAMPLE) && $(TERRAFORM) plan -input=false examples/$(EXAMPLE)
+
+archive:
+	zip aws-ecs-cluster.zip *.tf *.png *.md

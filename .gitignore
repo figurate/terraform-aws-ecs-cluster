@@ -4,3 +4,4 @@
 terraform-aws-ecs-cluster.iml
 *.tfvars
 *tfstate*
+*.zip

@@ -1,5 +1,7 @@
 # ![AWS](aws-logo.png) ECS Cluster
 
+[![CI](https://github.com/figurate/terraform-aws-ecs-cluster/actions/workflows/main.yml/badge.svg)](https://github.com/figurate/terraform-aws-ecs-cluster/actions/workflows/main.yml)
+
 Purpose: Blueprints for AWS ECS Clusters
 
 ![AWS ECS Cluster](aws\_ecs\_cluster.png)
